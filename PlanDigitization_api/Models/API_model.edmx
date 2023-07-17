@@ -1,0 +1,1098 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PlanDigitizationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AlarmTable_Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Alarm_ID" Type="int" />
+          <Property Name="Alarm_Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Daywise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Linecode" Type="varchar" MaxLength="10" />
+          <Property Name="Day" Type="varchar" MaxLength="10" />
+          <Property Name="Variantcode" Type="varchar" MaxLength="10" />
+          <Property Name="TotalOkParts" Type="int" />
+          <Property Name="TotalNokParts" Type="int" />
+          <Property Name="TotalReworkParts" Type="int" />
+          <Property Name="Firstpassyeild" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="COPQ" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="DayWise_Availability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="10" />
+          <Property Name="UpTime(Min)" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DownTime(Min)" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LossTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductionTime(Min)" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Availability" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="date" />
+          <Property Name="BreakTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Availability_considering_losses" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="DowntimeDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Shift_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Date" Type="date" />
+          <Property Name="DowntimeStart" Type="time" Precision="7" />
+          <Property Name="DownTimeEnd" Type="time" Precision="7" />
+          <Property Name="DurationInSeconds" Type="int" />
+          <Property Name="DownTimeReason" Type="varchar" MaxLength="50" />
+          <Property Name="Alarms" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DowntimeSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="Shift_ID" Type="varchar" MaxLength="10" />
+          <Property Name="DownTime_start" Type="time" Precision="7" />
+          <Property Name="DownTime_End" Type="time" Precision="7" />
+          <Property Name="DurationTime" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Live">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Linecode" Type="varchar" MaxLength="10" />
+          <Property Name="ShiftID" Type="varchar" MaxLength="10" />
+          <Property Name="Variantcode" Type="varchar" MaxLength="10" />
+          <Property Name="TotalOkParts" Type="int" />
+          <Property Name="TotalNokParts" Type="int" />
+          <Property Name="TotalReworkParts" Type="int" />
+          <Property Name="Firstpassyeild" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="COPQ" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="date" />
+          <Property Name="time_stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Live_Availability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ShiftID" Type="varchar" MaxLength="10" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Status" Type="varchar" MaxLength="30" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Availability" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UpTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DownTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LossTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TotalProductionTime" Type="int" />
+          <Property Name="lastupdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LossesTable_Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Loss_ID" Type="int" />
+          <Property Name="Loss_Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MachineAlarm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Shift_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Alarm_ID" Type="int" />
+          <Property Name="Start_Time" Type="datetime" />
+          <Property Name="End_Time" Type="datetime" />
+          <Property Name="Time_Stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MachineLoss">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Shift_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Loss_ID" Type="int" />
+          <Property Name="Start_Time" Type="datetime" />
+          <Property Name="End_Time" Type="datetime" />
+          <Property Name="Time_Stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RawAvailability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Shift_Id" Type="varchar" MaxLength="5" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="20" />
+          <Property Name="Machine_Status" Type="int" />
+          <Property Name="Automodeselected" Type="int" />
+          <Property Name="Manualmodeselected" Type="int" />
+          <Property Name="Automoderunning" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="RAWTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Shift_Id" Type="varchar" MaxLength="5" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="20" />
+          <Property Name="Machine_Status" Type="varchar" MaxLength="30" />
+          <Property Name="OK_Parts" Type="int" />
+          <Property Name="NOK_Parts" Type="int" />
+          <Property Name="Rework_Parts" Type="int" />
+          <Property Name="Rejection_Reasons" Type="varchar" MaxLength="50" />
+          <Property Name="Time_Stamp" Type="datetime" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Auto__Mode_Selected" Type="int" />
+          <Property Name="Manual_Mode_Slected" Type="int" />
+          <Property Name="Auto_Mode_Running" Type="int" />
+        </EntityType>
+        <EntityType Name="ShiftSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShiftName" Type="varchar" MaxLength="50" />
+          <Property Name="StartTime" Type="time" Precision="0" />
+          <Property Name="EndTime" Type="time" Precision="0" />
+          <Property Name="BreakTime" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Shiftwise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Linecode" Type="varchar" MaxLength="10" />
+          <Property Name="ShiftID" Type="varchar" MaxLength="10" />
+          <Property Name="Variantcode" Type="varchar" MaxLength="10" />
+          <Property Name="TotalOkParts" Type="int" />
+          <Property Name="TotalNokParts" Type="int" />
+          <Property Name="TotalReworkParts" Type="int" />
+          <Property Name="Firstpassyeild" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="COPQ" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Time_stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ShiftWise_Availability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Shift_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="10" />
+          <Property Name="UpTime(Min)" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DownTime(Min)" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LossTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductionTime(Min)" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Availability" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="date" />
+          <Property Name="BreakTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Availability_considering_losses" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_Live_Operator_Efficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_code" Type="varchar" MaxLength="10" />
+          <Property Name="Operation" Type="varchar" MaxLength="20" />
+          <Property Name="OperatorName" Type="varchar" MaxLength="20" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Expected_Cycle_Time" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Latest_Cycle_Time" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Target_Production" Type="int" />
+          <Property Name="Total_OKParts" Type="int" />
+          <Property Name="Total_NOKParts" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_MasterProduct">
+          <Key>
+            <PropertyRef Name="MP_ID" />
+          </Key>
+          <Property Name="MP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="30" />
+          <Property Name="ProductID" Type="varchar" MaxLength="20" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="50" />
+          <Property Name="OperationName" Type="varchar" MaxLength="20" />
+          <Property Name="MachineName" Type="varchar" MaxLength="20" />
+          <Property Name="RecipeName" Type="varchar" MaxLength="20" />
+          <Property Name="CycleTime" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_Raw_Operator_Efficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Line_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Shift_Id" Type="varchar" MaxLength="10" />
+          <Property Name="Variant_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Machine_Status" Type="int" />
+          <Property Name="OperatorID" Type="varchar" MaxLength="10" />
+          <Property Name="Manual_CycleTime" Type="int" />
+          <Property Name="StartTime_Operation" Type="datetime" />
+          <Property Name="EndTime_Operation" Type="datetime" />
+          <Property Name="Time_Stamp" Type="datetime" />
+          <Property Name="Ok_Parts" Type="int" />
+          <Property Name="NOk_Parts" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_toolcount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Machine_Code" Type="nvarchar" MaxLength="250" />
+          <Property Name="ToolID" Type="nvarchar" MaxLength="250" />
+          <Property Name="Classification" Type="nvarchar" MaxLength="250" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Time_Stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_toollist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToolName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ToolID" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Make" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Part_number" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Classification" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="RatedLife" Type="real" Nullable="false" />
+          <Property Name="Machine_Code" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_tooloperating_distance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Machine_Code" Type="nvarchar" MaxLength="250" />
+          <Property Name="ToolID" Type="nvarchar" MaxLength="250" />
+          <Property Name="Classification" Type="nvarchar" MaxLength="250" />
+          <Property Name="Distance" Type="real" />
+          <Property Name="Time_Stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_tooloperating_hrs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Machine_Code" Type="nvarchar" MaxLength="250" />
+          <Property Name="ToolID" Type="nvarchar" MaxLength="250" />
+          <Property Name="Classification" Type="nvarchar" MaxLength="250" />
+          <Property Name="Hours" Type="real" />
+          <Property Name="Time_Stamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="Funation" Type="varchar" MaxLength="30" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="SkillSet" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityContainer Name="PlanDigitizationModelStoreContainer">
+          <EntitySet Name="AlarmTable_Setting" EntityType="Self.AlarmTable_Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Daywise" EntityType="Self.Daywise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DayWise_Availability" EntityType="Self.DayWise_Availability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DowntimeDetails" EntityType="Self.DowntimeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DowntimeSetting" EntityType="Self.DowntimeSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Live" EntityType="Self.Live" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Live_Availability" EntityType="Self.Live_Availability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LossesTable_Setting" EntityType="Self.LossesTable_Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineAlarm" EntityType="Self.MachineAlarm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineLoss" EntityType="Self.MachineLoss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RawAvailability" EntityType="Self.RawAvailability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RAWTable" EntityType="Self.RAWTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftSetting" EntityType="Self.ShiftSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shiftwise" EntityType="Self.Shiftwise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftWise_Availability" EntityType="Self.ShiftWise_Availability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Live_Operator_Efficiency" EntityType="Self.tbl_Live_Operator_Efficiency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MasterProduct" EntityType="Self.tbl_MasterProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Raw_Operator_Efficiency" EntityType="Self.tbl_Raw_Operator_Efficiency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_toolcount" EntityType="Self.tbl_toolcount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_toollist" EntityType="Self.tbl_toollist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tooloperating_distance" EntityType="Self.tbl_tooloperating_distance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_tooloperating_hrs" EntityType="Self.tbl_tooloperating_hrs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PlanDigitizationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AlarmTable_Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Alarm_ID" Type="Int32" />
+          <Property Name="Alarm_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Daywise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Linecode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variantcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TotalOkParts" Type="Int32" />
+          <Property Name="TotalNokParts" Type="Int32" />
+          <Property Name="TotalReworkParts" Type="Int32" />
+          <Property Name="Firstpassyeild" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="COPQ" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DayWise_Availability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UpTime_Min_" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DownTime_Min_" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LossTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductionTime_Min_" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Availability" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="BreakTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Availability_considering_losses" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="DowntimeDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Shift_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="DowntimeStart" Type="Time" Precision="7" />
+          <Property Name="DownTimeEnd" Type="Time" Precision="7" />
+          <Property Name="DurationInSeconds" Type="Int32" />
+          <Property Name="DownTimeReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Alarms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DowntimeSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="Shift_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DownTime_start" Type="Time" Precision="7" />
+          <Property Name="DownTime_End" Type="Time" Precision="7" />
+          <Property Name="DurationTime" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Live">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Linecode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ShiftID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variantcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TotalOkParts" Type="Int32" />
+          <Property Name="TotalNokParts" Type="Int32" />
+          <Property Name="TotalReworkParts" Type="Int32" />
+          <Property Name="Firstpassyeild" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="COPQ" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="time_stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Live_Availability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ShiftID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Availability" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UpTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DownTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LossTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalProductionTime" Type="Int32" />
+          <Property Name="lastupdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LossesTable_Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Loss_ID" Type="Int32" />
+          <Property Name="Loss_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MachineAlarm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Shift_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Alarm_ID" Type="Int32" />
+          <Property Name="Start_Time" Type="DateTime" Precision="3" />
+          <Property Name="End_Time" Type="DateTime" Precision="3" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MachineLoss">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Shift_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Loss_ID" Type="Int32" />
+          <Property Name="Start_Time" Type="DateTime" Precision="3" />
+          <Property Name="End_Time" Type="DateTime" Precision="3" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RawAvailability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Shift_Id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Status" Type="Int32" />
+          <Property Name="Automodeselected" Type="Int32" />
+          <Property Name="Manualmodeselected" Type="Int32" />
+          <Property Name="Automoderunning" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="RAWTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Shift_Id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="OK_Parts" Type="Int32" />
+          <Property Name="NOK_Parts" Type="Int32" />
+          <Property Name="Rework_Parts" Type="Int32" />
+          <Property Name="Rejection_Reasons" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Auto__Mode_Selected" Type="Int32" />
+          <Property Name="Manual_Mode_Slected" Type="Int32" />
+          <Property Name="Auto_Mode_Running" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ShiftSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShiftName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="Time" Precision="0" />
+          <Property Name="EndTime" Type="Time" Precision="0" />
+          <Property Name="BreakTime" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Shiftwise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Linecode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ShiftID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variantcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TotalOkParts" Type="Int32" />
+          <Property Name="TotalNokParts" Type="Int32" />
+          <Property Name="TotalReworkParts" Type="Int32" />
+          <Property Name="Firstpassyeild" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="COPQ" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Time_stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ShiftWise_Availability">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Shift_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UpTime_Min_" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DownTime_Min_" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LossTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductionTime_Min_" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Availability" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="BreakTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Availability_considering_losses" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_Live_Operator_Efficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Operation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OperatorName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Expected_Cycle_Time" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Latest_Cycle_Time" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Target_Production" Type="Int32" />
+          <Property Name="Total_OKParts" Type="Int32" />
+          <Property Name="Total_NOKParts" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_MasterProduct">
+          <Key>
+            <PropertyRef Name="MP_ID" />
+          </Key>
+          <Property Name="MP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperationName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MachineName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RecipeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CycleTime" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_Raw_Operator_Efficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Line_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Shift_Id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Variant_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Machine_Status" Type="Int32" />
+          <Property Name="OperatorID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Manual_CycleTime" Type="Int32" />
+          <Property Name="StartTime_Operation" Type="DateTime" Precision="3" />
+          <Property Name="EndTime_Operation" Type="DateTime" Precision="3" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+          <Property Name="Ok_Parts" Type="Int32" />
+          <Property Name="NOk_Parts" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Funation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="SkillSet" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="PlanDigitizationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlarmTable_Setting" EntityType="Self.AlarmTable_Setting" />
+          <EntitySet Name="Daywises" EntityType="Self.Daywise" />
+          <EntitySet Name="DayWise_Availability" EntityType="Self.DayWise_Availability" />
+          <EntitySet Name="DowntimeDetails" EntityType="Self.DowntimeDetail" />
+          <EntitySet Name="DowntimeSettings" EntityType="Self.DowntimeSetting" />
+          <EntitySet Name="Lives" EntityType="Self.Live" />
+          <EntitySet Name="Live_Availability" EntityType="Self.Live_Availability" />
+          <EntitySet Name="LossesTable_Setting" EntityType="Self.LossesTable_Setting" />
+          <EntitySet Name="MachineAlarms" EntityType="Self.MachineAlarm" />
+          <EntitySet Name="MachineLosses" EntityType="Self.MachineLoss" />
+          <EntitySet Name="RawAvailabilities" EntityType="Self.RawAvailability" />
+          <EntitySet Name="RAWTables" EntityType="Self.RAWTable" />
+          <EntitySet Name="ShiftSettings" EntityType="Self.ShiftSetting" />
+          <EntitySet Name="Shiftwises" EntityType="Self.Shiftwise" />
+          <EntitySet Name="ShiftWise_Availability" EntityType="Self.ShiftWise_Availability" />
+          <EntitySet Name="tbl_Live_Operator_Efficiency" EntityType="Self.tbl_Live_Operator_Efficiency" />
+          <EntitySet Name="tbl_MasterProduct" EntityType="Self.tbl_MasterProduct" />
+          <EntitySet Name="tbl_Raw_Operator_Efficiency" EntityType="Self.tbl_Raw_Operator_Efficiency" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="tbl_toolcount" EntityType="PlanDigitizationModel.tbl_toolcount" />
+          <EntitySet Name="tbl_toollist" EntityType="PlanDigitizationModel.tbl_toollist" />
+          <EntitySet Name="tbl_tooloperating_distance" EntityType="PlanDigitizationModel.tbl_tooloperating_distance" />
+          <EntitySet Name="tbl_tooloperating_hrs" EntityType="PlanDigitizationModel.tbl_tooloperating_hrs" />
+        </EntityContainer>
+        <EntityType Name="tbl_toolcount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Machine_Code" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ToolID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Classification" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_toollist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToolName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ToolID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Make" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UOM" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Part_number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Classification" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RatedLife" Type="Single" Nullable="false" />
+          <Property Name="Machine_Code" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_tooloperating_distance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Machine_Code" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ToolID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Classification" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Distance" Type="Single" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_tooloperating_hrs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Machine_Code" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ToolID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Classification" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Hours" Type="Single" />
+          <Property Name="Time_Stamp" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PlanDigitizationModelStoreContainer" CdmEntityContainer="PlanDigitizationEntities">
+          <EntitySetMapping Name="AlarmTable_Setting">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.AlarmTable_Setting">
+              <MappingFragment StoreEntitySet="AlarmTable_Setting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Alarm_ID" ColumnName="Alarm_ID" />
+                <ScalarProperty Name="Alarm_Description" ColumnName="Alarm_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Daywises">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.Daywise">
+              <MappingFragment StoreEntitySet="Daywise">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Linecode" ColumnName="Linecode" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Variantcode" ColumnName="Variantcode" />
+                <ScalarProperty Name="TotalOkParts" ColumnName="TotalOkParts" />
+                <ScalarProperty Name="TotalNokParts" ColumnName="TotalNokParts" />
+                <ScalarProperty Name="TotalReworkParts" ColumnName="TotalReworkParts" />
+                <ScalarProperty Name="Firstpassyeild" ColumnName="Firstpassyeild" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="COPQ" ColumnName="COPQ" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DayWise_Availability">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.DayWise_Availability">
+              <MappingFragment StoreEntitySet="DayWise_Availability">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="UpTime_Min_" ColumnName="UpTime(Min)" />
+                <ScalarProperty Name="DownTime_Min_" ColumnName="DownTime(Min)" />
+                <ScalarProperty Name="LossTime" ColumnName="LossTime" />
+                <ScalarProperty Name="ProductionTime_Min_" ColumnName="ProductionTime(Min)" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BreakTime" ColumnName="BreakTime" />
+                <ScalarProperty Name="Availability_considering_losses" ColumnName="Availability_considering_losses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DowntimeDetails">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.DowntimeDetail">
+              <MappingFragment StoreEntitySet="DowntimeDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Shift_ID" ColumnName="Shift_ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DowntimeStart" ColumnName="DowntimeStart" />
+                <ScalarProperty Name="DownTimeEnd" ColumnName="DownTimeEnd" />
+                <ScalarProperty Name="DurationInSeconds" ColumnName="DurationInSeconds" />
+                <ScalarProperty Name="DownTimeReason" ColumnName="DownTimeReason" />
+                <ScalarProperty Name="Alarms" ColumnName="Alarms" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DowntimeSettings">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.DowntimeSetting">
+              <MappingFragment StoreEntitySet="DowntimeSetting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Shift_ID" ColumnName="Shift_ID" />
+                <ScalarProperty Name="DownTime_start" ColumnName="DownTime_start" />
+                <ScalarProperty Name="DownTime_End" ColumnName="DownTime_End" />
+                <ScalarProperty Name="DurationTime" ColumnName="DurationTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lives">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.Live">
+              <MappingFragment StoreEntitySet="Live">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Linecode" ColumnName="Linecode" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="Variantcode" ColumnName="Variantcode" />
+                <ScalarProperty Name="TotalOkParts" ColumnName="TotalOkParts" />
+                <ScalarProperty Name="TotalNokParts" ColumnName="TotalNokParts" />
+                <ScalarProperty Name="TotalReworkParts" ColumnName="TotalReworkParts" />
+                <ScalarProperty Name="Firstpassyeild" ColumnName="Firstpassyeild" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="COPQ" ColumnName="COPQ" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Live_Availability">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.Live_Availability">
+              <MappingFragment StoreEntitySet="Live_Availability">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Machine_Status" ColumnName="Machine_Status" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="UpTime" ColumnName="UpTime" />
+                <ScalarProperty Name="DownTime" ColumnName="DownTime" />
+                <ScalarProperty Name="LossTime" ColumnName="LossTime" />
+                <ScalarProperty Name="TotalProductionTime" ColumnName="TotalProductionTime" />
+                <ScalarProperty Name="lastupdate" ColumnName="lastupdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LossesTable_Setting">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.LossesTable_Setting">
+              <MappingFragment StoreEntitySet="LossesTable_Setting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Loss_ID" ColumnName="Loss_ID" />
+                <ScalarProperty Name="Loss_Description" ColumnName="Loss_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineAlarms">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.MachineAlarm">
+              <MappingFragment StoreEntitySet="MachineAlarm">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Shift_ID" ColumnName="Shift_ID" />
+                <ScalarProperty Name="Alarm_ID" ColumnName="Alarm_ID" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineLosses">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.MachineLoss">
+              <MappingFragment StoreEntitySet="MachineLoss">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Shift_ID" ColumnName="Shift_ID" />
+                <ScalarProperty Name="Loss_ID" ColumnName="Loss_ID" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RawAvailabilities">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.RawAvailability">
+              <MappingFragment StoreEntitySet="RawAvailability">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Shift_Id" ColumnName="Shift_Id" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="Machine_Status" ColumnName="Machine_Status" />
+                <ScalarProperty Name="Automodeselected" ColumnName="Automodeselected" />
+                <ScalarProperty Name="Manualmodeselected" ColumnName="Manualmodeselected" />
+                <ScalarProperty Name="Automoderunning" ColumnName="Automoderunning" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RAWTables">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.RAWTable">
+              <MappingFragment StoreEntitySet="RAWTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Shift_Id" ColumnName="Shift_Id" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="Machine_Status" ColumnName="Machine_Status" />
+                <ScalarProperty Name="OK_Parts" ColumnName="OK_Parts" />
+                <ScalarProperty Name="NOK_Parts" ColumnName="NOK_Parts" />
+                <ScalarProperty Name="Rework_Parts" ColumnName="Rework_Parts" />
+                <ScalarProperty Name="Rejection_Reasons" ColumnName="Rejection_Reasons" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Auto__Mode_Selected" ColumnName="Auto__Mode_Selected" />
+                <ScalarProperty Name="Manual_Mode_Slected" ColumnName="Manual_Mode_Slected" />
+                <ScalarProperty Name="Auto_Mode_Running" ColumnName="Auto_Mode_Running" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftSettings">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.ShiftSetting">
+              <MappingFragment StoreEntitySet="ShiftSetting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="BreakTime" ColumnName="BreakTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shiftwises">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.Shiftwise">
+              <MappingFragment StoreEntitySet="Shiftwise">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Linecode" ColumnName="Linecode" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="Variantcode" ColumnName="Variantcode" />
+                <ScalarProperty Name="TotalOkParts" ColumnName="TotalOkParts" />
+                <ScalarProperty Name="TotalNokParts" ColumnName="TotalNokParts" />
+                <ScalarProperty Name="TotalReworkParts" ColumnName="TotalReworkParts" />
+                <ScalarProperty Name="Firstpassyeild" ColumnName="Firstpassyeild" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="COPQ" ColumnName="COPQ" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time_stamp" ColumnName="Time_stamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftWise_Availability">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.ShiftWise_Availability">
+              <MappingFragment StoreEntitySet="ShiftWise_Availability">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Shift_ID" ColumnName="Shift_ID" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="UpTime_Min_" ColumnName="UpTime(Min)" />
+                <ScalarProperty Name="DownTime_Min_" ColumnName="DownTime(Min)" />
+                <ScalarProperty Name="LossTime" ColumnName="LossTime" />
+                <ScalarProperty Name="ProductionTime_Min_" ColumnName="ProductionTime(Min)" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BreakTime" ColumnName="BreakTime" />
+                <ScalarProperty Name="Availability_considering_losses" ColumnName="Availability_considering_losses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Live_Operator_Efficiency">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_Live_Operator_Efficiency">
+              <MappingFragment StoreEntitySet="tbl_Live_Operator_Efficiency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Line_code" ColumnName="Line_code" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="Expected_Cycle_Time" ColumnName="Expected_Cycle_Time" />
+                <ScalarProperty Name="Latest_Cycle_Time" ColumnName="Latest_Cycle_Time" />
+                <ScalarProperty Name="Target_Production" ColumnName="Target_Production" />
+                <ScalarProperty Name="Total_OKParts" ColumnName="Total_OKParts" />
+                <ScalarProperty Name="Total_NOKParts" ColumnName="Total_NOKParts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MasterProduct">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_MasterProduct">
+              <MappingFragment StoreEntitySet="tbl_MasterProduct">
+                <ScalarProperty Name="MP_ID" ColumnName="MP_ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="OperationName" ColumnName="OperationName" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+                <ScalarProperty Name="CycleTime" ColumnName="CycleTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Raw_Operator_Efficiency">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_Raw_Operator_Efficiency">
+              <MappingFragment StoreEntitySet="tbl_Raw_Operator_Efficiency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Line_Code" ColumnName="Line_Code" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="Shift_Id" ColumnName="Shift_Id" />
+                <ScalarProperty Name="Variant_Code" ColumnName="Variant_Code" />
+                <ScalarProperty Name="Machine_Status" ColumnName="Machine_Status" />
+                <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+                <ScalarProperty Name="Manual_CycleTime" ColumnName="Manual_CycleTime" />
+                <ScalarProperty Name="StartTime_Operation" ColumnName="StartTime_Operation" />
+                <ScalarProperty Name="EndTime_Operation" ColumnName="EndTime_Operation" />
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+                <ScalarProperty Name="Ok_Parts" ColumnName="Ok_Parts" />
+                <ScalarProperty Name="NOk_Parts" ColumnName="NOk_Parts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Funation" ColumnName="Funation" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SkillSet" ColumnName="SkillSet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_toolcount">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_toolcount">
+              <MappingFragment StoreEntitySet="tbl_toolcount">
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="ToolID" ColumnName="ToolID" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_toollist">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_toollist">
+              <MappingFragment StoreEntitySet="tbl_toollist">
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="RatedLife" ColumnName="RatedLife" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="Part_number" ColumnName="Part_number" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="ToolID" ColumnName="ToolID" />
+                <ScalarProperty Name="ToolName" ColumnName="ToolName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_tooloperating_distance">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_tooloperating_distance">
+              <MappingFragment StoreEntitySet="tbl_tooloperating_distance">
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="ToolID" ColumnName="ToolID" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_tooloperating_hrs">
+            <EntityTypeMapping TypeName="PlanDigitizationModel.tbl_tooloperating_hrs">
+              <MappingFragment StoreEntitySet="tbl_tooloperating_hrs">
+                <ScalarProperty Name="Time_Stamp" ColumnName="Time_Stamp" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="ToolID" ColumnName="ToolID" />
+                <ScalarProperty Name="Machine_Code" ColumnName="Machine_Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

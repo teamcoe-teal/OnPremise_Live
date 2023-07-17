@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7c3181b0d3c43c884ec7a46a401a82f" Name="Diagram1">
+        <EntityTypeShape EntityType="PlanDigitizationModel.AlarmTable_Setting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.Daywise" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.DayWise_Availability" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.DowntimeDetail" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.DowntimeSetting" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.Live" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.Live_Availability" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.LossesTable_Setting" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.MachineAlarm" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.MachineLoss" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.RawAvailability" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.RAWTable" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.ShiftSetting" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.Shiftwise" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.ShiftWise_Availability" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_Live_Operator_Efficiency" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_MasterProduct" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_Raw_Operator_Efficiency" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.User" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_toolcount" Width="1.5" PointX="13.375" PointY="5.75" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_toollist" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_tooloperating_distance" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="PlanDigitizationModel.tbl_tooloperating_hrs" Width="1.5" PointX="9.375" PointY="13.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
